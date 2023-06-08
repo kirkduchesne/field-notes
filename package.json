@@ -1,0 +1,25 @@
+{
+  "name": "field-notes",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "test": "node --test tests/*.test.cjs"
+  },
+  "dependencies": {
+    "next": "13.4.4",
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
+  },
+  "devDependencies": {
+    "typescript": "5.0.4",
+    "@types/node": "18.16.16",
+    "@types/react": "18.2.8",
+    "@types/react-dom": "18.2.4",
+    "tailwindcss": "3.3.2",
+    "postcss": "8.4.24",
+    "autoprefixer": "10.4.14"
+  }
+}
