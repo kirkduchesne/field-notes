@@ -1,0 +1,35 @@
+[
+  {
+    "slug": "label-every-input",
+    "title": "Label every input",
+    "tag": "Accessibility",
+    "summary": "Give every form control a visible label.",
+    "paragraphs": [
+      "A placeholder disappears as soon as someone types. Use a label that stays on the page and describes the value you expect.",
+      "Match the label htmlFor to the input id. This connects the name for assistive technology and makes the label clickable.",
+      "When validation fails, explain the correction in text next to the field. Do not depend on a red border alone."
+    ]
+  },
+  {
+    "slug": "keep-state-small",
+    "title": "Keep state small",
+    "tag": "React",
+    "summary": "Store user choices and derive the rest.",
+    "paragraphs": [
+      "A filtered list can usually be calculated from the original list and the current query. Keeping another copy in state introduces a second value to synchronize.",
+      "Calculate inexpensive derived values during rendering. Add memoization only after measuring a real cost.",
+      "Place state near the component that needs it. Moving everything to a shared provider makes simple interactions harder to trace."
+    ]
+  },
+  {
+    "slug": "safe-text-output",
+    "title": "Render text safely",
+    "tag": "JavaScript",
+    "summary": "Treat user input as text rather than markup.",
+    "paragraphs": [
+      "For a plain DOM page, assign user content with textContent. It displays characters without interpreting them as HTML.",
+      "React escapes ordinary string children. Keep notes as strings and render paragraphs instead of assembling markup from input.",
+      "When formatted HTML is a requirement, choose a reviewed sanitization approach. Escaping text and sanitizing HTML solve different problems."
+    ]
+  }
+]
