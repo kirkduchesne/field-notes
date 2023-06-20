@@ -31,5 +31,38 @@
       "React escapes ordinary string children. Keep notes as strings and render paragraphs instead of assembling markup from input.",
       "When formatted HTML is a requirement, choose a reviewed sanitization approach. Escaping text and sanitizing HTML solve different problems."
     ]
+  },
+  {
+    "slug": "responsive-columns",
+    "title": "Start with one column",
+    "tag": "CSS",
+    "summary": "Let content decide when the layout needs room.",
+    "paragraphs": [
+      "A narrow layout is a useful starting point. Put the most important information first and keep the reading order meaningful.",
+      "Use a grid with a single column by default, then add a wider-screen breakpoint when cards have enough space.",
+      "Test long titles and keyboard focus at a narrow width. A tidy screenshot with short sample text does not prove the layout can handle real content."
+    ]
+  },
+  {
+    "slug": "clear-error-messages",
+    "title": "Write useful errors",
+    "tag": "Forms",
+    "summary": "Explain what happened and what can be done.",
+    "paragraphs": [
+      "A useful validation message names the problem and the next action. \u201cEnter a whole number from 1 to 99\u201d is more helpful than \u201cInvalid input.\u201d",
+      "Preserve the values someone has already entered when possible. Losing their work makes a recoverable error more expensive.",
+      "A failed network request is different from an invalid field. Keep those states separate so the user does not change correct information."
+    ]
+  },
+  {
+    "slug": "stable-list-keys",
+    "title": "Choose stable list keys",
+    "tag": "React",
+    "summary": "Use identity rather than position for changing lists.",
+    "paragraphs": [
+      "When a list can be reordered or filtered, the array index does not describe an item\u2019s identity. Use a stable identifier from the data.",
+      "A key only needs to be unique among its siblings. A short permanent slug works well for a small authored collection.",
+      "Do not generate a random key during rendering. A changing key can cause components to remount and lose local state."
+    ]
   }
 ]
