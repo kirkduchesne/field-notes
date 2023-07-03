@@ -1,6 +1,11 @@
+import type { Metadata } from 'next';
 import { getNote, notes } from '@/lib/notes';
 import { notFound } from 'next/navigation';
 export function generateStaticParams() { return notes.map(({ slug }) => ({ slug })); }
+export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
+  const note = getNote(params.slug);
+  return note ? { title: note.title, description: note.summary } : { title: 'Note not found' };
+}
 export default function NotePage({ params }: { params: { slug: string } }) {
   const note = getNote(params.slug);
   if (!note) notFound();
