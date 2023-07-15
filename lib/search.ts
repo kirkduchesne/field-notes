@@ -1,4 +1,9 @@
-export type NoteIndex = { slug: string; title: string; tag: string; summary: string };
+export type NoteIndex = {
+  slug: string;
+  title: string;
+  tag: string;
+  summary: string;
+};
 export function filterNotes(notes: NoteIndex[], query: string, tag: string = 'All') {
   const words = query.trim().toLowerCase().split(/\s+/).filter(Boolean);
   return notes.filter((note) => {

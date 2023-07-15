@@ -2,4 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-:focus-visible { outline: 3px solid #b45309; outline-offset: 4px; }
+:focus-visible {
+  outline: 3px solid #b45309;
+  outline-offset: 4px;
+}
