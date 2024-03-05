@@ -13,7 +13,7 @@ export default function NotePage({ params }: { params: { slug: string } }) {
   if (!note) notFound();
   return (
     <main>
-      <p className="text-sm font-medium text-amber-800">{note.tag}</p>
+      <p className="text-sm font-medium text-amber-800"><a href={`/topics/${note.tag.toLowerCase()}`} className="underline">{note.tag}</a></p>
       <h1 className="mt-2 text-3xl font-semibold">{note.title}</h1>
       <p className="mt-4 text-lg text-slate-600">{note.summary}</p>
       <div className="mt-8 max-w-2xl space-y-5 leading-7">

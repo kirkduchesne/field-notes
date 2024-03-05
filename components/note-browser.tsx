@@ -56,7 +56,7 @@ export function NoteBrowser({ notes }: { notes: NoteIndex[] }) {
       <ul className="mt-6 grid gap-4 sm:grid-cols-2">
         {visible.map((note) => (
           <li key={note.slug} className="min-w-0 rounded-lg border border-stone-200 bg-white p-5">
-            <p className="text-sm text-amber-800">{note.tag}</p>
+            <p className="text-sm text-amber-800"><a href={`/topics/${note.tag.toLowerCase()}`} className="underline">{note.tag}</a></p>
             <h2 className="mt-1 text-xl font-semibold">
               <Link
                 href={`/notes/${note.slug}`}
