@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { getNote, notes } from '@/lib/notes';
 import { notFound } from 'next/navigation';
+export const dynamicParams = false;
 export function generateStaticParams() {
   return notes.map(({ slug }) => ({ slug }));
 }
@@ -11,6 +12,9 @@ export function generateMetadata({ params }: { params: { slug: string } }): Meta
 export default function NotePage({ params }: { params: { slug: string } }) {
   const note = getNote(params.slug);
   if (!note) notFound();
+  const position = notes.findIndex((item) => item.slug === note.slug);
+  const previous = notes[position - 1];
+  const next = notes[position + 1];
   return (
     <main>
       <p className="text-sm font-medium text-amber-800"><a href={`/topics/${note.tag.toLowerCase()}`} className="underline">{note.tag}</a></p>
@@ -21,6 +25,10 @@ export default function NotePage({ params }: { params: { slug: string } }) {
           <p key={paragraph}>{paragraph}</p>
         ))}
       </div>
+      <nav aria-label="Reading order" className="mt-10 grid gap-4 border-t border-stone-300 pt-5 sm:grid-cols-2">
+        {previous ? <a href={`/notes/${previous.slug}`} rel="prev" className="underline">Previous: {previous.title}</a> : <span />}
+        {next ? <a href={`/notes/${next.slug}`} rel="next" className="underline">Next: {next.title}</a> : null}
+      </nav>
     </main>
   );
 }
