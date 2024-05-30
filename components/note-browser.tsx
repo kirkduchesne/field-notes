@@ -1,24 +1,21 @@
-'use client';
-
 import Link from 'next/link';
-import { useState } from 'react';
 import { filterNotes, NoteIndex } from '@/lib/search';
 
-export function NoteBrowser({ notes }: { notes: NoteIndex[] }) {
-  const [query, setQuery] = useState('');
-  const [tag, setTag] = useState('All');
+export function NoteBrowser({ notes, query = '', tag = 'All' }: { notes: NoteIndex[]; query?: string; tag?: string }) {
   const tags = Array.from(new Set(notes.map((note) => note.tag))).sort();
   const visible = filterNotes(notes, query, tag);
   return (
     <div className="mt-8">
+      <form action="/" method="get">
       <label htmlFor="search" className="block text-sm font-semibold">
         Search titles and summaries
       </label>
       <input
         id="search"
         type="search"
-        value={query}
-        onChange={(event) => setQuery(event.target.value)}
+        name="q"
+        defaultValue={query}
+        maxLength={120}
         className="mt-2 w-full rounded border border-slate-400 bg-white px-3 py-2"
       />
       <label htmlFor="tag" className="mt-4 block text-sm font-semibold">
@@ -26,8 +23,8 @@ export function NoteBrowser({ notes }: { notes: NoteIndex[] }) {
       </label>
       <select
         id="tag"
-        value={tag}
-        onChange={(event) => setTag(event.target.value)}
+        name="tag"
+        defaultValue={tag}
         className="mt-2 rounded border border-slate-400 bg-white px-3 py-2"
       >
         <option>All</option>
@@ -35,22 +32,15 @@ export function NoteBrowser({ notes }: { notes: NoteIndex[] }) {
           <option key={value}>{value}</option>
         ))}
       </select>
+      <button type="submit" className="ml-3 rounded bg-slate-800 px-4 py-2 text-white">Search</button>
+      </form>
       <p role="status" className="mt-4 text-sm text-slate-600">
         {visible.length} {visible.length === 1 ? 'note' : 'notes'} found.
       </p>
       {visible.length === 0 ? (
         <div className="mt-5 rounded border border-stone-200 bg-white p-5">
           <p>No matching notes. Try fewer words or another topic.</p>
-          <button
-            type="button"
-            onClick={() => {
-              setQuery('');
-              setTag('All');
-            }}
-            className="mt-3 font-semibold underline"
-          >
-            Clear filters
-          </button>
+          <a href="/" className="mt-3 inline-block font-semibold underline">Clear filters</a>
         </div>
       ) : null}
       <ul className="mt-6 grid gap-4 sm:grid-cols-2">
