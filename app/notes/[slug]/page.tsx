@@ -1,3 +1,4 @@
+import { readingMinutes } from '@/lib/reading';
 import type { Metadata } from 'next';
 import { getNote, notes } from '@/lib/notes';
 import { notFound } from 'next/navigation';
@@ -19,6 +20,7 @@ export default function NotePage({ params }: { params: { slug: string } }) {
     <main>
       <p className="text-sm font-medium text-amber-800"><a href={`/topics/${note.tag.toLowerCase()}`} className="underline">{note.tag}</a></p>
       <h1 className="mt-2 text-3xl font-semibold">{note.title}</h1>
+      <p className="mt-3 text-sm text-slate-500">About {readingMinutes(note.paragraphs)} minute read</p>
       <p className="mt-4 text-lg text-slate-600">{note.summary}</p>
       <div className="mt-8 max-w-2xl space-y-5 leading-7">
         {note.paragraphs.map((paragraph) => (
