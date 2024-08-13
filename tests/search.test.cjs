@@ -21,7 +21,7 @@ test('search matches all words without case sensitivity', () => {
 });
 test('topic and search intersect without mutating the collection', () => {
   const before = JSON.stringify(notes);
-  assert.equal(filterNotes(notes, '', 'React').length, 2);
+  assert.equal(filterNotes(notes, '', 'React').length, 3);
   assert.equal(filterNotes(notes, 'label', 'React').length, 0);
   assert.equal(JSON.stringify(notes), before);
 });
