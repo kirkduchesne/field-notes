@@ -19,7 +19,7 @@ export default function Layout({ children }: { children: ReactNode }) {
               Field Notes / Web reference
             </Link>
           </nav>
-          <div id="content">{children}</div>
+          <div id="content" tabIndex={-1}>{children}</div>
           <footer className="mt-12 border-t border-stone-300 pt-4 text-sm text-slate-500">
             A small collection of practical reminders.
           </footer>

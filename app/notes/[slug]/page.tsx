@@ -23,8 +23,10 @@ export default function NotePage({ params }: { params: { slug: string } }) {
       <p className="mt-3 text-sm text-slate-500">About {readingMinutes(note.paragraphs)} minute read</p>
       <p className="mt-4 text-lg text-slate-600">{note.summary}</p>
       <div className="mt-8 max-w-2xl space-y-5 leading-7">
-        {note.paragraphs.map((paragraph) => (
-          <p key={paragraph}>{paragraph}</p>
+        {note.paragraphs.map((paragraph, index) => (
+          <p key={paragraph} id={`paragraph-${index + 1}`} tabIndex={-1} className="scroll-mt-6">
+            {paragraph} <a href={`#paragraph-${index + 1}`} aria-label={`Link to paragraph ${index + 1}`} className="text-amber-800 underline">¶</a>
+          </p>
         ))}
       </div>
       <nav aria-label="Reading order" className="mt-10 grid gap-4 border-t border-stone-300 pt-5 sm:grid-cols-2">
