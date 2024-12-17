@@ -1,8 +1,15 @@
 'use client';
-export default function ErrorPage({ reset }: { error: Error; reset: () => void }) {
+export default function ErrorPage({
+  reset,
+}: {
+  error: Error;
+  reset: () => void;
+}) {
   return (
     <main>
-      <h1 className="text-3xl font-semibold">The notes could not be displayed</h1>
+      <h1 className="text-3xl font-semibold">
+        The notes could not be displayed
+      </h1>
       <p className="mt-4">Try loading this page again.</p>
       <button
         type="button"
