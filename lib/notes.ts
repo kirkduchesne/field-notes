@@ -1,4 +1,6 @@
 import data from './notes.json';
+import { validateNotes } from './validate';
+validateNotes(data);
 export type Note = {
   slug: string;
   title: string;

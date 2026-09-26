@@ -64,5 +64,27 @@
       "A key only needs to be unique among its siblings. A short permanent slug works well for a small authored collection.",
       "Do not generate a random key during rendering. A changing key can cause components to remount and lose local state."
     ]
+  },
+  {
+    "slug": "reset-pagination",
+    "title": "Reset pagination when filters change",
+    "tag": "Forms",
+    "summary": "Keep the current page consistent with a smaller result set.",
+    "paragraphs": [
+      "A search can reduce a long list to a few items. Keeping the old page number can make those valid results appear missing. Reset the page when the user changes the filters.",
+      "With a native GET form, include the active search fields and leave out the page field. The server can treat a missing page as the first page and clamp unusually large page numbers.",
+      "Pagination links should carry the current filters. Test a bookmarked URL and a browser back action as well as the first visit."
+    ]
+  },
+  {
+    "slug": "measure-before-memoizing",
+    "title": "Measure before memoizing",
+    "tag": "React",
+    "summary": "Find a real rendering cost before adding cached calculations.",
+    "paragraphs": [
+      "A calculation over a handful of items is usually easy to read directly in the component. Memoization adds dependencies and another behavior to maintain.",
+      "Use a representative interaction and measure a baseline before changing code. Keep the data and environment consistent when comparing the result.",
+      "If a measured cost justifies memoization, include every value used by the calculation in its dependency list. Check that the change preserves behavior rather than treating a faster number as the only result."
+    ]
   }
 ]

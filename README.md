@@ -2,26 +2,34 @@
 
 A small reference notebook for everyday web development.
 
-Created in September 2026 as a present-day reconstruction using technology available by June 8, 2023. Historical commit dates were intentionally assigned to June 8, 11, 14, 17, 20, 23, 26, 29 and July 3, 7, 11, 15, 2023. These dates do not represent original development or publication dates.
+Created in September 2026 as a present-day reconstruction using technology available at the assigned 2023–2024 milestones. Historical commit dates were intentionally assigned; they do not represent original development or publication dates. The 2023 history is retained.
 
-Run `npm ci`, `npm run dev`, then open localhost:3000. Node 18 is the intended runtime series.
+## Run and check
 
-## Stack and historical baseline
+Use Node 20, run `npm ci`, then `npm run dev`, and open `http://localhost:3000`. Run `npm test` and `npm run build` before changing the content or sharing a build. `npm start` serves the production build locally.
 
-Next.js 13.4.4 (App Router), React 18.2.0, TypeScript 5.0.4, and Tailwind CSS 3.3.2. Exact package versions and the lockfile were resolved with a June 8, 2023 cutoff. Next.js 13.4.4 was published May 25, 2023. Node 18.20.5 was used for verification; it is a later maintenance release of the intended Node 18 series, not a release available in June 2023.
+Local verification used Node 20.19.0, a later maintenance release rather than the patch available at the historical milestones. CI pins Node 20.18.1, available before the December 2024 CI milestone.
 
-The pinned historical dependencies have known security advisories. This is a local historical reference project, not a current production deployment baseline. Upgrade and review dependencies before hosting a public server.
+## Notebook behavior
 
-## How it works
+Eight authored notes live in `lib/notes.json`. Each has a stable slug, topic, summary, and short paragraphs. Detail and topic pages are generated at build time. Previous/next links follow editorial file order, with no wrap at the ends. Paragraph links provide stable anchors while paragraph order stays unchanged. The reading estimate uses 200 words per minute, rounded up to at least one minute; it is an approximation.
 
-Six authored notes live in `lib/notes.json`. Each has a stable slug, topic, summary, and short paragraphs. Next generates the detail routes at build time. The server passes only titles, summaries, topics, and slugs to the client search component; the full paragraphs remain in detail pages.
+Search is server-rendered through a native GET form. Its query and topic live in the URL, so reloads, bookmarks, and browser history preserve the submitted search. Search is case-insensitive and matches every word against titles, summaries, and topics, not full paragraphs. Queries use Unicode NFKC normalization and are capped at 120 code points. Repeated query parameters are ignored; unknown topics use All. A zero-result state offers a reset. Forms, topic browsing, reading links, and paragraph anchors work without browser JavaScript.
 
-Search is case-insensitive and matches every entered word against title, summary, and topic. Topic selection combines with the query. A zero-result state offers a reset. Search state is temporary and resets when the index remounts. There is no account, backend, or network search service.
+There is no account, backend, saved reading activity, or network search service. Content is bundled locally rather than fetched from a simulated API.
 
-## Validation
+## Technology history
 
-- `npm test`: search normalization, topic intersection, content routes, and ordinary-text handling.
-- `npm run build`: TypeScript checks and production rendering for the index and six notes.
-- Browser checks: combined filters, reset, empty search, all note routes and metadata, unknown-route 404, and narrow-screen layout.
+The June 2023 baseline used Next.js 13.4.4, React 18.2.0, TypeScript 5.0.4, and Tailwind CSS 3.3.2. January 2024 moves to Next.js 14.1.0, TypeScript 5.3.3, Tailwind CSS 3.4.1, and Node 20. November moves to Next.js 14.2.18 with React/React DOM 18.3.1. Exact dependencies and all resolved package publication dates were checked before the introducing milestone.
 
-To add a note, choose a unique lowercase hyphenated slug, fill in the same fields, and rerun tests and the build. Search indexes summaries rather than full article text.
+The ten assigned 2024 maintenance dates are January 29, March 5, April 18, May 30, July 9, August 13, September 19, October 29, November 26, and December 17. The original June–July 2023 commits remain unchanged.
+
+Pinned historical dependencies have known security advisories. This is a local historical reference project, not a current production deployment baseline. Upgrade and review dependencies before hosting a public server.
+
+## Validation and editing
+
+`npm test` covers word search, topic intersection, content slugs and metadata, malformed content, direct URL inputs, Unicode, and reading estimates. Production builds typecheck the app and validate content before generating note routes. Browser checks cover all eight notes, topics, previous/next boundaries, metadata, unknown-route 404, keyboard anchors and skip links, narrow layouts, and JavaScript-disabled searching.
+
+To add a note, choose a unique lowercase hyphenated slug, fill in every field, and rerun tests and the build. Topic names must contain ASCII letters only; their lowercase spelling forms the topic route. The same validated slug helper is used for generated routes, links, and metadata. The content validator rejects URL delimiters in topics, empty metadata, duplicate slugs, and missing paragraphs. The index introduction should be updated when the note count changes.
+
+The GitHub Actions workflow pins checkout and setup-node by commit, grants read-only repository contents, disables persisted checkout credentials, and runs install, tests, and build. Local checks do not establish that a remote workflow has run.
