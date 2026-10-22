@@ -6,9 +6,11 @@ Created in September 2026 as a present-day reconstruction using technology avail
 
 ## Run and check
 
-Use Node 20, run `npm ci`, then `npm run dev`, and open `http://localhost:3000`. Run `npm test` and `npm run build` before changing the content or sharing a build. `npm start` serves the production build locally.
+Use Node 22.23.4 (`nvm install && nvm use`), run `npm ci`, then `npm run dev`, and open `http://localhost:3000`. Run `npm test` and `npm run build` before changing the content or sharing a build. `npm start` serves the production build locally.
 
-Local verification used Node 20.19.0, a later maintenance release rather than the patch available at the historical milestones. CI pins Node 20.18.1, available before the December 2024 CI milestone.
+The active toolchain and CI use Node 22.23.4, the patched Node 22 baseline from the [October 21, 2026 security release](https://nodejs.org/en/blog/vulnerability/october-2026-security-releases). The package engine accepts patched Node 22 releases (`>=22.23.4 <23`). Next.js is patched within the 14.2 line to 14.2.35 and direct PostCSS to 8.5.31. Compatible transitive security updates are also recorded in the lockfile. These updates reduce known issues but do not resolve all framework and tooling advisories described below.
+
+Historical verification used Node 20.19.0, a later maintenance release rather than the patch available at the assigned milestones. The historical CI configuration pinned Node 20.18.1, available before the December 2024 CI milestone.
 
 ## Notebook behavior
 
