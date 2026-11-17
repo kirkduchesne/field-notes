@@ -7,18 +7,15 @@ export const dynamicParams = false;
 export function generateStaticParams() {
   return notes.map(({ slug }) => ({ slug }));
 }
-export function generateMetadata({
-  params,
-}: {
-  params: { slug: string };
-}): Metadata {
-  const note = getNote(params.slug);
+type Props = { params: Promise<{ slug: string }> };
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const note = getNote((await params).slug);
   return note
     ? { title: note.title, description: note.summary }
     : { title: 'Note not found' };
 }
-export default function NotePage({ params }: { params: { slug: string } }) {
-  const note = getNote(params.slug);
+export default async function NotePage({ params }: Props) {
+  const note = getNote((await params).slug);
   if (!note) notFound();
   const position = notes.findIndex((item) => item.slug === note.slug);
   const previous = notes[position - 1];

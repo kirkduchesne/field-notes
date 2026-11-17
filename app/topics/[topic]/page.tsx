@@ -8,14 +8,15 @@ export function generateStaticParams() {
     (topic) => ({ topic })
   );
 }
-export function generateMetadata({ params }: { params: { topic: string } }) {
-  const note = notes.find((item) => topicSlug(item.tag) === params.topic);
+type Props = { params: Promise<{ topic: string }> };
+export async function generateMetadata({ params }: Props) {
+  const { topic } = await params;
+  const note = notes.find((item) => topicSlug(item.tag) === topic);
   return { title: note ? `${note.tag} notes` : 'Topic not found' };
 }
-export default function TopicPage({ params }: { params: { topic: string } }) {
-  const matches = notes.filter(
-    (note) => topicSlug(note.tag) === params.topic
-  );
+export default async function TopicPage({ params }: Props) {
+  const { topic } = await params;
+  const matches = notes.filter((note) => topicSlug(note.tag) === topic);
   if (!matches.length) notFound();
   return (
     <main>
