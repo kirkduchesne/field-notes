@@ -22,7 +22,7 @@ There is no account, backend, saved reading activity, or network search service.
 
 ## Technology history
 
-The June 2023 baseline used Next.js 13.4.4, React 18.2.0, TypeScript 5.0.4, and Tailwind CSS 3.3.2. January 2024 moves to Next.js 14.1.0, TypeScript 5.3.3, Tailwind CSS 3.4.1, and Node 20. November moves to Next.js 14.2.18 with React/React DOM 18.3.1. Exact dependencies and all resolved package publication dates were checked before the introducing milestone.
+The June 2023 baseline used Next.js 13.4.4, React 18.2.0, TypeScript 5.0.4, and Tailwind CSS 3.3.2. January 2024 moves to Next.js 14.1.0, TypeScript 5.3.3, Tailwind CSS 3.4.1, and Node 20. November moves to Next.js 14.2.18 with React/React DOM 18.3.1. November 2026 moves to Next.js 15.5.29 with React/React DOM 19.3.1 (route `params` and `searchParams` are now async). Exact dependencies and all resolved package publication dates were checked before the introducing milestone.
 
 The ten assigned 2024 maintenance dates are January 29, March 5, April 18, May 30, July 9, August 13, September 19, October 29, November 26, and December 17. The original June–July 2023 commits remain unchanged.
 

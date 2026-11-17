@@ -1,9 +1,13 @@
 import { readSearch, Params } from '@/lib/query';
 import { notes } from '@/lib/notes';
 import { NoteBrowser } from '@/components/note-browser';
-export default function Home({ searchParams }: { searchParams: Params }) {
+export default async function Home({
+  searchParams,
+}: {
+  searchParams: Promise<Params>;
+}) {
   const { q, tag } = readSearch(
-    searchParams,
+    await searchParams,
     notes.map((note) => note.tag)
   );
   const index = notes.map(({ slug, title, tag, summary }) => ({
